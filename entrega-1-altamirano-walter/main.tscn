@@ -26,6 +26,6 @@ grow_horizontal = 2
 grow_vertical = 0
 texture = ExtResource("2_h2yge")
 
-[node name="Jugador" parent="." unique_id=1215272501 instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." unique_id=1215272501 instance=ExtResource("1_ig7tw")]
 position = Vector2(571, 427)
 speed = 150.0
