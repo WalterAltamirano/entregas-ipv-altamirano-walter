@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://btk62ss4jkvm6"]
+
+[ext_resource type="Texture2D" uid="uid://ddjqhb6wc8vqr" path="res://assets/player.png" id="1_4tch5"]
+[ext_resource type="Script" uid="uid://um37jjvjpo3l" path="res://entities/jugador.gd" id="2_6fi76"]
+
+[node name="Jugador" type="Sprite2D" unique_id=1215272501]
+texture = ExtResource("1_4tch5")
+script = ExtResource("2_6fi76")
+speed = 1000.0

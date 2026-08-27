@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cmeh0paeueog5"]
+
+[ext_resource type="Texture2D" uid="uid://drrmhrkifs3xr" path="res://assets/background.png" id="1_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://btk62ss4jkvm6" path="res://entities/jugador.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://ciypilwtg0wjk" path="res://assets/floor.png" id="2_h2yge"]
+
+[node name="Main" type="Node" unique_id=636881571]
+
+[node name="Background" type="TextureRect" parent="." unique_id=498769374]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_0xm2m")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=947640193]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -189.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_h2yge")
+
+[node name="Jugador" parent="." unique_id=1215272501 instance=ExtResource("1_ig7tw")]
+position = Vector2(571, 427)
+speed = 150.0
