@@ -1,29 +1,25 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene format=3 uid="uid://cv2u0hykk1fk1"]
 
-[ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/textures/background.png" type="Texture" id=2]
-[ext_resource path="res://assets/textures/floor.png" type="Texture" id=3]
+[ext_resource type="PackedScene" uid="uid://cm6rurcvarnhu" path="res://entities/player/Player.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://ooa4l8anclts" path="res://assets/textures/background.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://w3smt8umkvdv" path="res://assets/textures/floor.png" id="3"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=649243566]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1186611400]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("2")
+expand_mode = 1
 
-[node name="Floor" type="TextureRect" parent="."]
+[node name="Floor" type="TextureRect" parent="." unique_id=1727188652]
+anchors_preset = -1
 anchor_top = 0.699
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 3 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture = ExtResource("3")
+expand_mode = 1
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 413.003, 395.272 )
+[node name="Player" parent="." unique_id=2063835360 instance=ExtResource("1")]
+position = Vector2(413.003, 395.272)
