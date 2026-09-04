@@ -10,13 +10,12 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	position += direction* speed * delta;
+	var screen_size = get_viewport_rect().size;
+	if (global_position.x > screen_size.x || global_position.y > screen_size.y 
+		|| global_position.y < 0 || global_position.x < 0): 
+		emit_signal("delete_requested",self);
 	
 func set_starting_values(starting_position:Vector2, direction:Vector2):
 	global_position = starting_position;
 	self.direction = direction;
-	$Timer.start();
 	set_physics_process(true);
-
-
-func _on_timer_timeout() -> void:
-	emit_signal("delete_requested",self);

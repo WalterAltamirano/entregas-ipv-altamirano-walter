@@ -5,7 +5,4 @@
 
 [node name="Projectile" unique_id=1904216681 instance=ExtResource("1_41r0v")]
 texture = ExtResource("2_g2re0")
-speed = 250.0
-
-[node name="Timer" parent="." index="0" unique_id=1447806745]
-wait_time = 3.0
+speed = 350.0

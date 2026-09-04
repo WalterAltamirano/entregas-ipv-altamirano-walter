@@ -11,10 +11,10 @@ func set_values(player, projectile_container):
 	self.player = player;
 	self.projectile_container = projectile_container;
 	$Timer.start();
-
+	
 func _on_timer_timeout() -> void:
 	fire();
-	
+
 func fire():
 	var projectile:Projectile = projectile_scene.instantiate();
 	projectile_container.add_child(projectile);
