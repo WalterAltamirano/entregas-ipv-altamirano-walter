@@ -13,7 +13,7 @@ func set_values(player, projectile_container):
 	$Timer.start();
 
 func _on_timer_timeout() -> void:
-	fire()
+	fire();
 	
 func fire():
 	var projectile:Projectile = projectile_scene.instantiate();
