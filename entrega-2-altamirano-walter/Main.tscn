@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cv2u0hykk1fk1"]
+
+[ext_resource type="PackedScene" uid="uid://cm6rurcvarnhu" path="res://entities/player/Player.tscn" id="1"]
+[ext_resource type="Script" uid="uid://l83dihs456j3" path="res://Main.gd" id="1_cm0pq"]
+[ext_resource type="Texture2D" uid="uid://ooa4l8anclts" path="res://assets/textures/background.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://w3smt8umkvdv" path="res://assets/textures/floor.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://o6t5nui8ppmu" path="res://entities/enemies/Turret.tscn" id="5_fos0i"]
+
+[node name="Main" type="Node" unique_id=649243566]
+script = ExtResource("1_cm0pq")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1186611400]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+
+[node name="Floor" type="TextureRect" parent="." unique_id=1727188652]
+anchors_preset = -1
+anchor_top = 0.699
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("3")
+expand_mode = 1
+
+[node name="Player" parent="." unique_id=2063835360 instance=ExtResource("1")]
+position = Vector2(431, 427)
+
+[node name="Turret" parent="." unique_id=255649630 instance=ExtResource("5_fos0i")]
+position = Vector2(671, 145)
+
+[node name="Turret2" parent="." unique_id=1224132369 instance=ExtResource("5_fos0i")]
+position = Vector2(279, 171)
+
+[node name="Turret3" parent="." unique_id=519936501 instance=ExtResource("5_fos0i")]
+position = Vector2(1035, 163)
