@@ -25,13 +25,13 @@ texture = ExtResource("3")
 expand_mode = 1
 
 [node name="Player" parent="." unique_id=2063835360 instance=ExtResource("1")]
-position = Vector2(413.003, 395.272)
+position = Vector2(431, 427)
 
 [node name="Turret" parent="." unique_id=255649630 instance=ExtResource("5_fos0i")]
 position = Vector2(671, 145)
 
-[node name="Turret2" parent="." unique_id=1012579916 instance=ExtResource("5_fos0i")]
-position = Vector2(292, 200)
+[node name="Turret2" parent="." unique_id=1224132369 instance=ExtResource("5_fos0i")]
+position = Vector2(279, 171)
 
-[node name="Turret3" parent="." unique_id=1815317867 instance=ExtResource("5_fos0i")]
-position = Vector2(829, 294)
+[node name="Turret3" parent="." unique_id=519936501 instance=ExtResource("5_fos0i")]
+position = Vector2(1035, 163)

@@ -23,7 +23,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("fire"):
 		cannon.fire();
 		
-	#MRUB
+	#MRUV
 	var h_movement_direction:int = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"));
 	if h_movement_direction != 0:
 		velocity.x = clamp(velocity.x + (h_movement_direction * ACCELERATION), -H_SPEED_LIMIT, H_SPEED_LIMIT);
