@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 @onready var cannon: Node = $Cannon;
 
 @export var ACCELERATION: float = 20.0;

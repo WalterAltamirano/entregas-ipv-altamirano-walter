@@ -2,14 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cl3fuwgbdw6c2" path="res://entities/player/Player.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://cwss7yl8udbui" path="res://assets/textures/background.png" id="2"]
-[ext_resource type="Script" uid="uid://bkmvt4ya2xfm8" path="res://Main.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://bscjwoaotlcqc" path="res://entities/enemies/Turret.tscn" id="4"]
-[ext_resource type="Script" uid="uid://ertnqm8kd3lw" path="res://entities/enemies/TurretsSpawner.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://cvj1wbogmxkmj" path="res://entities/world/floor.tscn" id="6_3dxm6"]
 [ext_resource type="PackedScene" uid="uid://2bb1bql72rri" path="res://entities/world/cube.tscn" id="7_lgr22"]
 
 [node name="Main" type="Node" unique_id=874656019]
-script = ExtResource("3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1469680009]
 layer = -1
@@ -25,17 +22,15 @@ texture = ExtResource("2")
 [node name="Player" parent="." unique_id=758355844 instance=ExtResource("1")]
 position = Vector2(413.003, 395.272)
 
-[node name="TurretsSpawner" type="Node" parent="." unique_id=726916698]
-script = ExtResource("5")
-turret_scene = ExtResource("4")
+[node name="Geometry" type="Node2D" parent="." unique_id=1845580056]
 
-[node name="Floor" parent="." unique_id=1741472333 instance=ExtResource("6_3dxm6")]
+[node name="Floor" parent="Geometry" unique_id=1741472333 instance=ExtResource("6_3dxm6")]
 position = Vector2(414, 538)
 
-[node name="Floor2" parent="." unique_id=1379363407 instance=ExtResource("6_3dxm6")]
+[node name="Floor2" parent="Geometry" unique_id=1379363407 instance=ExtResource("6_3dxm6")]
 position = Vector2(1226, 538)
 
-[node name="Floor3" parent="." unique_id=839423243 instance=ExtResource("6_3dxm6")]
+[node name="Floor3" parent="Geometry" unique_id=839423243 instance=ExtResource("6_3dxm6")]
 position = Vector2(2039, 538)
 
 [node name="Cube" parent="." unique_id=512522984 instance=ExtResource("7_lgr22")]
@@ -46,3 +41,6 @@ position = Vector2(127, 321)
 
 [node name="Cube3" parent="." unique_id=1492864358 instance=ExtResource("7_lgr22")]
 position = Vector2(215, 325)
+
+[node name="Turret" parent="." unique_id=1881415032 instance=ExtResource("4")]
+position = Vector2(890, 201)

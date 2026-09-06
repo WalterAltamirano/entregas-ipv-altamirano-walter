@@ -11,8 +11,8 @@ func initialize() -> void:
 		
 		var turret_pos: Vector2 = Vector2(
 			randf_range(visible_rect.position.x, visible_rect.end.x),
-			randf_range(visible_rect.position.y + 30,-50)
+			randf_range(visible_rect.position.y + 30,visible_rect.end.y)
 		)
 		
 		add_child(turret_instance)
-		turret_instance.initialize(turret_pos, self)
+		turret_instance.initialize(turret_pos)
