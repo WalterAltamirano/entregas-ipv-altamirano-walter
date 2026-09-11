@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var ACCELERATION: float = 20.0;
 @export var H_SPEED_LIMIT: float = 600.0;
 @export var FRICTION_WEIGHT: float = 0.1;
-@export var JUMP_SPEED: float = -300.0;
+@export var JUMP_SPEED: float = -350.0;
 @export var GRAVITY: float = 10.0;
 @export var PUSH_FORCE: float = 80.0;
 var speed: Vector2 = Vector2.ZERO;
@@ -40,8 +40,9 @@ func handle_events():
 		# Ternary if: {true code} if {condition} else {false code}
 		velocity.x = lerp(velocity.x, 0.0, FRICTION_WEIGHT) if abs(velocity.x) > 1.0 else 0.0;
 	
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_SPEED;
+
 	
 func _physics_process(delta: float) -> void:
 	handle_events();

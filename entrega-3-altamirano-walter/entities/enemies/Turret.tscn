@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c1umtbyikidk0" path="res://assets/textures/turret.png" id="1"]
 [ext_resource type="Script" uid="uid://b2s442tfjn5or" path="res://entities/enemies/Turret.gd" id="2"]
-[ext_resource type="PackedScene" path="res://entities/enemies/TurretProjectile.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bwm682m5m7f65" path="res://entities/enemies/TurretProjectile.tscn" id="3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x15t2"]
 radius = 330.00607
@@ -23,6 +23,9 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=507682489]
 shape = SubResource("CircleShape2D_x15t2")
+
+[node name="WherePlayer" type="RayCast2D" parent="." unique_id=1540526689]
+collision_mask = 2
 
 [connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

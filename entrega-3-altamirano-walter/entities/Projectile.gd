@@ -17,7 +17,7 @@ func initialize(container, spawn_position:Vector2, direction_to_go:Vector2):
 	lifetime_timer.start();
 
 func _on_collision(body: Node2D):
-	_remove();
+	_remove.call_deferred();
 
 func _physics_process(delta):
 	position += direction * VELOCITY * delta;

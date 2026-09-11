@@ -2,11 +2,12 @@ extends Sprite2D
 
 @onready var fire_position: Node2D = $FirePosition;
 @onready var fire_timer: Timer = $FireTimer;
-
+@onready var where_player: RayCast2D = $WherePlayer;
 @export var projectile_scene: PackedScene;
 
 var target:Node2D;
 var projectile_container: Node;
+
 
 func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
 	self.projectile_container = projectile_container;
@@ -14,12 +15,17 @@ func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
 	
 func fire_at_player() -> void:
 	if target != null:
-		var proj_instance = projectile_scene.instantiate();
-		proj_instance.initialize(
-			projectile_container,
-			fire_position.global_position,
-			fire_position.global_position.direction_to(target.global_position)
-		);
+		where_player.target_position = to_local(target.global_position);
+		where_player.force_raycast_update();
+		if where_player.is_colliding():
+			var collider:Object = where_player.get_collider();
+			if collider == target:
+				var proj_instance = projectile_scene.instantiate();
+				proj_instance.initialize(
+					projectile_container,
+					fire_position.global_position,
+					fire_position.global_position.direction_to(target.global_position)
+				);
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if target == null:
