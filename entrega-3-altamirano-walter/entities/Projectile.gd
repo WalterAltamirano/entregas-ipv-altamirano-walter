@@ -1,10 +1,10 @@
 extends Area2D
 
-@onready var lifetime_timer = $LifetimeTimer
+@onready var lifetime_timer = $LifetimeTimer;
+@onready var hitbox = $Hitbox;
+@export var VELOCITY: float = 800.0;
 
-@export var VELOCITY: float = 800.0
-
-var direction:Vector2
+var direction:Vector2;
 
 func _ready():
 	body_entered.connect(_on_collision);
@@ -17,6 +17,12 @@ func initialize(container: Node, spawn_position:Vector2, direction_to_go:Vector2
 	lifetime_timer.start();
 
 func _on_collision(body: Node2D):
+	_remove.call_deferred();
+
+func on_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method("notify_hit"):
+		body.notify_hit();
+	hitbox.collision_mask = 0;
 	_remove.call_deferred();
 
 func _physics_process(delta):

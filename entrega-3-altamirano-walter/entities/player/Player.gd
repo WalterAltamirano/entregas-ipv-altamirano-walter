@@ -51,3 +51,11 @@ func _physics_process(delta: float) -> void:
 	move_and_slide();
 	#No es recomendable modificar la posicion. Usar la interfaz de Godot
 	#position += velocity * delta
+
+func notify_hit() -> void:
+	_remove.call_deferred();
+	
+func _remove() -> void:
+	set_physics_process(false);
+	hide()
+	collision_layer = 0;

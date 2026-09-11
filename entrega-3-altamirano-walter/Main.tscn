@@ -34,6 +34,9 @@ position = Vector2(1430, -4)
 script = ExtResource("3_fos0i")
 turret_scene = ExtResource("5_lgr22")
 
+[node name="Turret" parent="TurretsSpawner" unique_id=1881415032 instance=ExtResource("5_lgr22")]
+position = Vector2(47, 389)
+
 [node name="Geometry" type="Node2D" parent="." unique_id=1845580056]
 
 [node name="Floor" parent="Geometry" unique_id=1741472333 instance=ExtResource("6_3dxm6")]
@@ -46,11 +49,11 @@ position = Vector2(1226, 538)
 position = Vector2(2039, 538)
 
 [node name="Floor4" parent="Geometry" unique_id=1097630505 instance=ExtResource("6_3dxm6")]
-position = Vector2(1448, 302)
+position = Vector2(1422, 273)
 scale = Vector2(0.1, 0.1)
 
 [node name="Floor5" parent="Geometry" unique_id=1896621856 instance=ExtResource("6_3dxm6")]
-position = Vector2(1730, 243)
+position = Vector2(1879, 223)
 scale = Vector2(0.1, 0.1)
 
 [node name="Floor6" parent="Geometry" unique_id=1837191134 instance=ExtResource("6_3dxm6")]
@@ -83,18 +86,18 @@ position = Vector2(805.99994, 456.99994)
 rotation = -0.44331363
 
 [node name="Platform3" parent="Geometry" unique_id=433736251 instance=ExtResource("8_03owx")]
-position = Vector2(1310, 440)
+position = Vector2(1324, 405)
 rotation = -0.5235988
 
 [node name="Floor7" parent="Geometry" unique_id=540518616 instance=ExtResource("6_3dxm6")]
-position = Vector2(1512, 138)
+position = Vector2(1577, 81)
 scale = Vector2(0.1, 0.1)
 
 [node name="star" type="TextureRect" parent="." unique_id=245860816]
-offset_left = 1488.0
-offset_top = 20.0
-offset_right = 1558.0
-offset_bottom = 89.0
+offset_left = 1538.0
+offset_top = -27.0
+offset_right = 1608.0
+offset_bottom = 42.0
 texture = ExtResource("3_03owx")
 expand_mode = 1
 stretch_mode = 4
