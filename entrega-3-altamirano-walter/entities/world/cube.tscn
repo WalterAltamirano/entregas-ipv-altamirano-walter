@@ -6,6 +6,8 @@
 size = Vector2(35.5, 30.5)
 
 [node name="Cube" type="RigidBody2D" unique_id=512522984]
+collision_layer = 4
+collision_mask = 7
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=810115261]
 position = Vector2(46, 49)
