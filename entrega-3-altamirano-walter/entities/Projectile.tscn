@@ -2,15 +2,10 @@
 
 [ext_resource type="Script" uid="uid://b7l0vhkk6gulk" path="res://entities/Projectile.gd" id="1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_en0xg"]
-
 [node name="Projectile" type="Area2D" unique_id=471667028]
 script = ExtResource("1")
 
 [node name="LifetimeTimer" type="Timer" parent="." unique_id=313812246]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1258648409]
-shape = SubResource("CircleShape2D_en0xg")
 
 [node name="Htibox" type="Area2D" parent="." unique_id=1155607073]
 
