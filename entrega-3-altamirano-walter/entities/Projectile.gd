@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Area2D
 
 @onready var lifetime_timer = $LifetimeTimer
 
@@ -6,12 +6,18 @@ extends Sprite2D
 
 var direction:Vector2
 
+func _ready():
+	body_entered.connect(_on_collision);
+
 func initialize(container, spawn_position:Vector2, direction_to_go:Vector2):
 	container.add_child(self);
 	self.direction = direction_to_go;
 	global_position = spawn_position;
 	lifetime_timer.timeout.connect( _on_lifetime_timer_timeout);
 	lifetime_timer.start();
+
+func _on_collision(body: Node2D):
+	_remove();
 
 func _physics_process(delta):
 	position += direction * VELOCITY * delta;

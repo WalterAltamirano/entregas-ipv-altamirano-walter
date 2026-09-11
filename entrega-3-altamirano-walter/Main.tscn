@@ -47,6 +47,10 @@ position = Vector2(37, 188)
 [node name="Wall2" parent="Geometry" unique_id=1945360658 instance=ExtResource("7_trn2v")]
 position = Vector2(2395, 189)
 
+[node name="Floor4" parent="Geometry" unique_id=1097630505 instance=ExtResource("6_3dxm6")]
+position = Vector2(911, 327)
+scale = Vector2(0.1, 0.1)
+
 [node name="Cube" parent="." unique_id=512522984 instance=ExtResource("7_lgr22")]
 position = Vector2(669, 329)
 
