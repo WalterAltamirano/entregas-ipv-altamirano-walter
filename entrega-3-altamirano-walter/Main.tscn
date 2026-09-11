@@ -35,7 +35,7 @@ script = ExtResource("3_fos0i")
 turret_scene = ExtResource("5_lgr22")
 
 [node name="Turret" parent="TurretsSpawner" unique_id=1881415032 instance=ExtResource("5_lgr22")]
-position = Vector2(47, 389)
+position = Vector2(-1047, 230)
 
 [node name="Geometry" type="Node2D" parent="." unique_id=1845580056]
 

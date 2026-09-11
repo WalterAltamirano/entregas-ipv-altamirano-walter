@@ -19,12 +19,6 @@ func initialize(container: Node, spawn_position:Vector2, direction_to_go:Vector2
 func _on_collision(body: Node2D):
 	_remove.call_deferred();
 
-func on_hitbox_body_entered(body: Node2D) -> void:
-	if body.has_method("notify_hit"):
-		body.notify_hit();
-	hitbox.collision_mask = 0;
-	_remove.call_deferred();
-
 func _physics_process(delta):
 	position += direction * VELOCITY * delta;
 	# Necesitamos que desaparezca en algun momento
@@ -42,3 +36,8 @@ func _remove():
 	get_parent().remove_child(self);
 	queue_free();
 	
+func _on_htibox_body_entered(body: Node2D) -> void:
+	if body.has_method("notify_hit"):
+		body.notify_hit();
+	hitbox.collision_mask = 0;
+	_remove.call_deferred();

@@ -40,7 +40,7 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 		target = null;
 
 func _on_fire_timer_timeout() -> void:
-	fire_at_player();
+	fire_timer.stop();
 
 func notify_hit() -> void:
 	_remove.call_deferred();
