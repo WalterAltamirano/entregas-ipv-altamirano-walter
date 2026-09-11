@@ -5,4 +5,4 @@ extends Node
 
 func _ready() -> void:
 	player.initialize(self);
-	turret_spawner.initialize(player, 2);
+	turret_spawner.initialize(player);

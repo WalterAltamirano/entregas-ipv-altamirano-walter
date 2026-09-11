@@ -1,10 +1,11 @@
 extends CharacterBody2D
+class_name Player;
 @onready var cannon: Node = $Cannon;
 
 @export var ACCELERATION: float = 20.0;
 @export var H_SPEED_LIMIT: float = 600.0;
 @export var FRICTION_WEIGHT: float = 0.1;
-@export var JUMP_SPEED: float = -350.0;
+@export var JUMP_SPEED: float = -450.0;
 @export var GRAVITY: float = 10.0;
 @export var PUSH_FORCE: float = 80.0;
 var speed: Vector2 = Vector2.ZERO;
@@ -48,9 +49,5 @@ func _physics_process(delta: float) -> void:
 	handle_events();
 	velocity.y += GRAVITY;
 	move_and_slide();
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i);
-		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * PUSH_FORCE);
 	#No es recomendable modificar la posicion. Usar la interfaz de Godot
 	#position += velocity * delta

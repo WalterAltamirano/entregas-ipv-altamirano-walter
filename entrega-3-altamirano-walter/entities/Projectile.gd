@@ -9,7 +9,7 @@ var direction:Vector2
 func _ready():
 	body_entered.connect(_on_collision);
 
-func initialize(container, spawn_position:Vector2, direction_to_go:Vector2):
+func initialize(container: Node, spawn_position:Vector2, direction_to_go:Vector2):
 	container.add_child(self);
 	self.direction = direction_to_go;
 	global_position = spawn_position;

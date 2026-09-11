@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://o1abef3mm6v0"]
+
+[ext_resource type="Texture2D" uid="uid://dqwq8ifmtn35a" path="res://assets/textures/triangle.png" id="1_7wfu3"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_c6i3y"]
+a = Vector2(54, -120)
+b = Vector2(-114, -7)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_toa2b"]
+a = Vector2(46, -73)
+b = Vector2(31, 123)
+
+[node name="Platform" type="StaticBody2D" unique_id=1054216749]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1990194717]
+position = Vector2(-0.99999976, -1)
+rotation = 0.5305801
+scale = Vector2(0.14916666, 0.17548078)
+texture = ExtResource("1_7wfu3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=232904280]
+position = Vector2(-8, 40)
+shape = SubResource("SegmentShape2D_c6i3y")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=2088584661]
+shape = SubResource("SegmentShape2D_toa2b")

@@ -12,14 +12,8 @@ height = 64.33081
 
 [node name="Player" type="CharacterBody2D" unique_id=1388919938]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 3
 script = ExtResource("1")
-ACCELERATION = null
-H_SPEED_LIMIT = null
-FRICTION_WEIGHT = null
-JUMP_SPEED = null
-GRAVITY = null
-PUSH_FORCE = null
 
 [node name="SpritePlayer" type="Sprite2D" parent="." unique_id=494795228]
 texture = ExtResource("5_g3lhm")

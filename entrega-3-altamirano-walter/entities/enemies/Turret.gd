@@ -8,6 +8,8 @@ extends Sprite2D
 var target:Node2D;
 var projectile_container: Node;
 
+func _ready():
+	self.projectile_container = get_parent();
 
 func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
 	self.projectile_container = projectile_container;
@@ -19,21 +21,21 @@ func fire_at_player() -> void:
 		where_player.force_raycast_update();
 		if where_player.is_colliding():
 			var collider:Object = where_player.get_collider();
-			if collider == target:
+			if collider is Player:
 				var proj_instance = projectile_scene.instantiate();
 				proj_instance.initialize(
-					projectile_container,
+					self.projectile_container,
 					fire_position.global_position,
 					fire_position.global_position.direction_to(target.global_position)
 				);
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if target == null:
+	if target == null: 
 		target = body;
 		fire_timer.start();
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if body == target:
+	if body == target:  
 		target = null;
 		fire_timer.stop();
 
