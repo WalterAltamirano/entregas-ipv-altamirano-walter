@@ -8,13 +8,14 @@ extends CharacterBody2D
 ## ruta estática al mismo.
 ## https://docs.godotengine.org/es/stable/tutorials/scripting/scene_unique_nodes.html
 @onready var weapon: Node = $"%Weapon"
-
+@onready var body_animations: AnimationPlayer = $BodyAnimations;
 @export var ACCELERATION: float = 3750.0 # Lo multiplicamos por delta, asi que es 60.0 / (1.0 / 60.0)
 @export var H_SPEED_LIMIT: float = 600.0
 @export var jump_speed: int = 500
 @export var FRICTION_WEIGHT: float = 6.25 # Lo multiplicamos por delta, asi que es 0.1 / (1.0 / 60.0)
 @export var gravity: int = 625.0 # Lo multiplicamos por delta, asi que es 10.0 / (1.0 / 60.0)
 @export var push_force: float = 80.0
+@onready var body: Sprite2D = $Body
 
 var projectile_container: Node
 var h_movement_direction: int = 0
@@ -32,7 +33,6 @@ func initialize(projectile_container: Node = get_parent()) -> void:
 	self.projectile_container = projectile_container
 	weapon.projectile_container = projectile_container
 
-
 func _physics_process(delta: float) -> void:
 	_process_input()
 	
@@ -45,9 +45,17 @@ func _physics_process(delta: float) -> void:
 			-H_SPEED_LIMIT,
 			H_SPEED_LIMIT
 		)
+		body.flip_h = h_movement_direction < 0;
 	else:
 		velocity.x = lerp(velocity.x, 0.0, FRICTION_WEIGHT * delta) if abs(velocity.x) > 1 else 0
 	
+	
+	if !is_on_floor():
+		_play_animation("jump");
+	elif h_movement_direction != 0:
+		_play_animation("walk");
+	else:
+		_play_animation("Idle");
 	# Jump
 	# NO multiplicamos por delta ya que se aplica una sola vez
 	if jump and is_on_floor():
@@ -111,4 +119,5 @@ func _remove() -> void:
 ## Wrapper sobre el llamado a animación para tener un solo punto de entrada controlable
 ## (en el caso de que necesitemos expandir la lógica o debuggear, por ejemplo)
 func _play_animation(animation: String) -> void:
-	pass ## Acá debe ir la lógica de llamado a animaciones
+	if body_animations.has_animation(animation):
+		body_animations.play(animation);
