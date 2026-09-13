@@ -15,7 +15,7 @@ extends CharacterBody2D
 @export var FRICTION_WEIGHT: float = 6.25 # Lo multiplicamos por delta, asi que es 0.1 / (1.0 / 60.0)
 @export var gravity: int = 625.0 # Lo multiplicamos por delta, asi que es 10.0 / (1.0 / 60.0)
 @export var push_force: float = 80.0
-@onready var body: Sprite2D = $Body
+@onready var body_pivot: Node2D = $BodyPivot
 
 var projectile_container: Node
 var h_movement_direction: int = 0
@@ -45,7 +45,8 @@ func _physics_process(delta: float) -> void:
 			-H_SPEED_LIMIT,
 			H_SPEED_LIMIT
 		)
-		body.flip_h = h_movement_direction < 0;
+		#Sos uno o menos uno (solo te resto dos si miro a la izq)
+		body_pivot.scale.x = 1 - 2 * float(h_movement_direction < 0);
 	else:
 		velocity.x = lerp(velocity.x, 0.0, FRICTION_WEIGHT * delta) if abs(velocity.x) > 1 else 0
 	
@@ -108,7 +109,7 @@ func _process_input() -> void:
 func notify_hit() -> void:
 	print("I'm player and imma die")
 	_remove.call_deferred()
-
+	#Hacer la animacion de muerte.
 
 func _remove() -> void:
 	set_physics_process(false)
