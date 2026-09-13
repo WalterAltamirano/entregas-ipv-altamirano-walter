@@ -2,7 +2,10 @@ extends Node2D
 
 @export var turret_scene: PackedScene
 
-func initialize(player: Node2D) -> void:
+func _ready():
+	call_deferred("initialize");
+
+func initialize() -> void:
 	var visible_rect: Rect2 = get_viewport().get_visible_rect()
 	for i in 3:
 		var turret_instance: Node2D = turret_scene.instantiate()
@@ -11,5 +14,5 @@ func initialize(player: Node2D) -> void:
 			randf_range(self.global_position.y, self.global_position.y - 300)
 		)
 		add_child(turret_instance);
-		turret_instance.initialize(turret_pos, self);
+		turret_instance.initialize(turret_pos, get_parent());
 		

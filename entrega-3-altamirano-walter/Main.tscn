@@ -1,18 +1,16 @@
 [gd_scene format=3 uid="uid://dnc5muoeyfwah"]
 
 [ext_resource type="PackedScene" uid="uid://cl3fuwgbdw6c2" path="res://entities/player/Player.tscn" id="1"]
-[ext_resource type="Script" uid="uid://bkmvt4ya2xfm8" path="res://Main.gd" id="1_lgr22"]
 [ext_resource type="Texture2D" uid="uid://cwss7yl8udbui" path="res://assets/textures/background.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bkrdxsurrw7ck" path="res://assets/textures/start.png" id="3_03owx"]
 [ext_resource type="Script" uid="uid://upmtsgpfutcy" path="res://entities/enemies/turret_spawner.gd" id="3_fos0i"]
 [ext_resource type="PackedScene" uid="uid://bscjwoaotlcqc" path="res://entities/enemies/Turret.tscn" id="5_lgr22"]
-[ext_resource type="PackedScene" uid="uid://cvj1wbogmxkmj" path="res://entities/world/floor.tscn" id="6_3dxm6"]
-[ext_resource type="PackedScene" uid="uid://2bb1bql72rri" path="res://entities/world/cube.tscn" id="7_lgr22"]
-[ext_resource type="PackedScene" uid="uid://cti2tnpruwb5p" path="res://entities/world/wall.tscn" id="7_trn2v"]
-[ext_resource type="PackedScene" uid="uid://o1abef3mm6v0" path="res://entities/world/platform.tscn" id="8_03owx"]
+[ext_resource type="PackedScene" uid="uid://cvj1wbogmxkmj" path="res://entities/world/Floor.tscn" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://2bb1bql72rri" path="res://entities/world/Cube.tscn" id="7_lgr22"]
+[ext_resource type="PackedScene" uid="uid://cti2tnpruwb5p" path="res://entities/world/Wall.tscn" id="7_trn2v"]
+[ext_resource type="PackedScene" uid="uid://o1abef3mm6v0" path="res://entities/world/Platform.tscn" id="8_03owx"]
 
 [node name="Main" type="Node" unique_id=874656019]
-script = ExtResource("1_lgr22")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1469680009]
 layer = -1
@@ -27,77 +25,77 @@ size_flags_horizontal = 3
 texture = ExtResource("2")
 
 [node name="Player" parent="." unique_id=758355844 instance=ExtResource("1")]
-position = Vector2(413.003, 395.272)
+position = Vector2(205, 585)
 
 [node name="TurretsSpawner" type="Marker2D" parent="." unique_id=638200368]
-position = Vector2(1430, -4)
+position = Vector2(1258, 448)
 script = ExtResource("3_fos0i")
 turret_scene = ExtResource("5_lgr22")
 
-[node name="Turret" parent="TurretsSpawner" unique_id=1881415032 instance=ExtResource("5_lgr22")]
-position = Vector2(92, 365)
+[node name="Turret" parent="TurretsSpawner" unique_id=308440923 instance=ExtResource("5_lgr22")]
+position = Vector2(127, 344)
 
 [node name="Geometry" type="Node2D" parent="." unique_id=1845580056]
 
 [node name="Floor" parent="Geometry" unique_id=1741472333 instance=ExtResource("6_3dxm6")]
-position = Vector2(414, 538)
+position = Vector2(410, 967)
 
 [node name="Floor2" parent="Geometry" unique_id=1379363407 instance=ExtResource("6_3dxm6")]
-position = Vector2(1226, 538)
+position = Vector2(1222, 967)
 
 [node name="Floor3" parent="Geometry" unique_id=839423243 instance=ExtResource("6_3dxm6")]
-position = Vector2(2039, 538)
+position = Vector2(2031, 967)
 
 [node name="Floor4" parent="Geometry" unique_id=1097630505 instance=ExtResource("6_3dxm6")]
-position = Vector2(1422, 273)
+position = Vector2(1266, 744)
 scale = Vector2(0.1, 0.1)
 
 [node name="Floor5" parent="Geometry" unique_id=1896621856 instance=ExtResource("6_3dxm6")]
-position = Vector2(1879, 223)
+position = Vector2(1529, 706)
 scale = Vector2(0.1, 0.1)
 
 [node name="Floor6" parent="Geometry" unique_id=1837191134 instance=ExtResource("6_3dxm6")]
-position = Vector2(716, 352)
+position = Vector2(591, 751)
 scale = Vector2(0.23, 0.23)
 
+[node name="Floor7" parent="Geometry" unique_id=540518616 instance=ExtResource("6_3dxm6")]
+position = Vector2(1380, 537)
+scale = Vector2(0.1, 0.1)
+
 [node name="Wall" parent="Geometry" unique_id=1562029574 instance=ExtResource("7_trn2v")]
-position = Vector2(37, 188)
+position = Vector2(37, 617)
 
 [node name="Wall2" parent="Geometry" unique_id=1945360658 instance=ExtResource("7_trn2v")]
-position = Vector2(2395, 189)
+position = Vector2(1975, 611)
 
 [node name="Cube" parent="Geometry" unique_id=512522984 instance=ExtResource("7_lgr22")]
-position = Vector2(641, 255)
+position = Vector2(538, 612)
 
 [node name="Cube2" parent="Geometry" unique_id=755417796 instance=ExtResource("7_lgr22")]
-position = Vector2(687, 256)
+position = Vector2(543, 651)
 
 [node name="Cube3" parent="Geometry" unique_id=1492864358 instance=ExtResource("7_lgr22")]
-position = Vector2(687, 221)
+position = Vector2(497, 654)
 
 [node name="Cube4" parent="Geometry" unique_id=1700659769 instance=ExtResource("7_lgr22")]
-position = Vector2(641, 220)
+position = Vector2(493, 619)
 
 [node name="Platform" parent="Geometry" unique_id=1054216749 instance=ExtResource("8_03owx")]
-position = Vector2(581, 456)
+position = Vector2(452, 840)
 
 [node name="Platform2" parent="Geometry" unique_id=742191030 instance=ExtResource("8_03owx")]
-position = Vector2(805.99994, 456.99994)
+position = Vector2(685, 847.99994)
 rotation = -0.44331363
 
 [node name="Platform3" parent="Geometry" unique_id=433736251 instance=ExtResource("8_03owx")]
-position = Vector2(1324, 405)
+position = Vector2(1131, 845.00006)
 rotation = -0.5235988
 
-[node name="Floor7" parent="Geometry" unique_id=540518616 instance=ExtResource("6_3dxm6")]
-position = Vector2(1577, 81)
-scale = Vector2(0.1, 0.1)
-
 [node name="star" type="TextureRect" parent="." unique_id=245860816]
-offset_left = 1538.0
-offset_top = -27.0
-offset_right = 1608.0
-offset_bottom = 42.0
+offset_left = 1344.0
+offset_top = 425.0
+offset_right = 1414.0
+offset_bottom = 494.0
 texture = ExtResource("3_03owx")
 expand_mode = 1
 stretch_mode = 4
