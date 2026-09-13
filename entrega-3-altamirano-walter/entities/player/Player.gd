@@ -1,6 +1,6 @@
 extends CharacterBody2D
 class_name Player;
-@onready var cannon: Node = $Cannon;
+@onready var cannon: Sprite2D = $Cannon;
 
 @export var ACCELERATION: float = 20.0;
 @export var H_SPEED_LIMIT: float = 600.0;
@@ -10,6 +10,9 @@ class_name Player;
 @export var PUSH_FORCE: float = 80.0;
 var speed: Vector2 = Vector2.ZERO;
 var projectile_container: Node;
+
+func ready():
+	call_deferred("initialize", get_parent());
 
 func initialize(projectile_container: Node) -> void:
 	self.projectile_container = projectile_container;
@@ -44,7 +47,6 @@ func handle_events():
 	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_SPEED;
 
-	
 func _physics_process(delta: float) -> void:
 	handle_events();
 	velocity.y += GRAVITY;
@@ -53,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	#position += velocity * delta
 
 func notify_hit() -> void:
-	_remove.call_deferred();
+	call_deferred("_remove");
 	
 func _remove() -> void:
 	set_physics_process(false);

@@ -1,15 +1,15 @@
-extends Sprite2D
+extends Node2D
 
 @onready var fire_position: Node2D = $FirePosition;
 @onready var fire_timer: Timer = $FireTimer;
 @onready var where_player: RayCast2D = $WherePlayer;
 @export var projectile_scene: PackedScene;
-
 var target:Node2D;
 var projectile_container: Node;
 
-func _ready():
+func _ready() -> void:
 	self.projectile_container = get_parent();
+	projectile_container.add_child(self);
 
 func initialize(turret_pos: Vector2, projectile_container: Node) -> void:
 	self.projectile_container = projectile_container;
@@ -28,24 +28,25 @@ func fire_at_player() -> void:
 					fire_position.global_position,
 					fire_position.global_position.direction_to(target.global_position)
 				);
-				fire_timer.start();
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if target == null: 
 		target = body;
-		fire_at_player();
+	fire_timer.start();
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body == target:  
 		target = null;
-
-func _on_fire_timer_timeout() -> void:
 	fire_timer.stop();
 
 func notify_hit() -> void:
-	_remove.call_deferred();
+	call_deferred("_remove");
 	
 func _remove() -> void:
 	get_parent().remove_child(self);
 	queue_free();
-	
+	set_physics_process(false);
+	hide()
+
+func _on_fire_timer_timeout() -> void:
+	fire_at_player();
