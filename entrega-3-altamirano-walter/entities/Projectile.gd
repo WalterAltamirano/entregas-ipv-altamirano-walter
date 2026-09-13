@@ -1,7 +1,6 @@
 extends Area2D
 
 @onready var lifetime_timer = $LifetimeTimer;
-@onready var hitbox = $Hitbox;
 @export var VELOCITY: float = 800.0;
 
 var direction:Vector2;
@@ -17,8 +16,8 @@ func initialize(container: Node, spawn_position:Vector2, direction_to_go:Vector2
 	lifetime_timer.start();
 
 func _on_collision(body: Node2D):
-	_remove.call_deferred();
-
+	call_deferred("_remove");
+	
 func _physics_process(delta):
 	position += direction * VELOCITY * delta;
 	# Necesitamos que desaparezca en algun momento
@@ -26,18 +25,20 @@ func _physics_process(delta):
 	# Si está fuera de la pantalla
 	var visible_rect:Rect2 = get_viewport().get_visible_rect();
 	if !visible_rect.has_point(global_position):
-		_remove();
+		call_deferred("_remove");
 
 # Si supero una cantidad de tiempo de vida
 func _on_lifetime_timer_timeout():
-	_remove();
+	call_deferred("_remove");
 
 func _remove():
-	get_parent().remove_child(self);
-	queue_free();
-	
-func _on_htibox_body_entered(body: Node2D) -> void:
+	if get_parent() != null:
+		get_parent().remove_child(self);
+		queue_free();
+		set_physics_process(false);
+		hide()
+
+func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("notify_hit"):
 		body.notify_hit();
-	hitbox.collision_mask = 0;
-	_remove.call_deferred();
+	

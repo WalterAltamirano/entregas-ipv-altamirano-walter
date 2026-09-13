@@ -1,6 +1,6 @@
 extends Sprite2D
 
-@onready var cannon_tip: Node2D = $CannonTip
+@onready var cannon_tip: Marker2D = $CannonTip
 
 @export var projectile_scene: PackedScene
 
