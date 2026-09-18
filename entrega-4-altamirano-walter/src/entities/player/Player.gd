@@ -108,6 +108,7 @@ func _process_input() -> void:
 
 func notify_hit() -> void:
 	print("I'm player and imma die")
+	
 	_remove.call_deferred()
 	#Hacer la animacion de muerte.
 

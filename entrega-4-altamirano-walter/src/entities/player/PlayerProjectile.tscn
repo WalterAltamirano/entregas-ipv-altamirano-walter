@@ -1,14 +1,45 @@
 [gd_scene format=3 uid="uid://dnl107pupmqic"]
 
 [ext_resource type="PackedScene" uid="uid://cgadr55reetnl" path="res://src/entities/Projectile.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://c0dtic4faccuo" path="res://assets/textures/fx/bolt/bolt1.png" id="2_3xva6"]
+[ext_resource type="Texture2D" uid="uid://byb8a46xw8hvo" path="res://assets/textures/fx/bolt/bolt2.png" id="3_7x7rd"]
+[ext_resource type="Texture2D" uid="uid://cumdu64mhxypv" path="res://assets/textures/fx/bolt/bolt3.png" id="4_yptx2"]
+[ext_resource type="Texture2D" uid="uid://biquvrchicyrk" path="res://assets/textures/fx/bolt/bolt4.png" id="5_7x7xp"]
 
 [sub_resource type="CircleShape2D" id="1"]
-radius = 8.0
+radius = 6.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxsoe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3xva6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7x7rd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yptx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7x7xp")
+}],
+"loop": 1,
+"name": &"movement",
+"speed": 5.0
+}]
 
 [node name="PlayerProjectile" unique_id=1581377392 instance=ExtResource("1")]
+VELOCITY = 300.0
 
-[node name="Hitbox" parent="." index="2"]
+[node name="Hitbox" parent="." index="1" unique_id=301521669]
 collision_mask = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=529035832]
+position = Vector2(0, -6)
 shape = SubResource("1")
+
+[node name="ProjectileAnimation" parent="." index="2" unique_id=1020254724]
+position = Vector2(2.3841858e-07, -6)
+scale = Vector2(0.25, 0.5)
+sprite_frames = SubResource("SpriteFrames_jxsoe")

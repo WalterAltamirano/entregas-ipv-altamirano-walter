@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 ## colisiones con el mundo, pausa todo lo demás y ejecuta una animación de muerte
 func notify_hit() -> void:
 	print("I'm turret and imma die")
-
+	call_deferred("_remove");
 
 func _remove() -> void:
 	get_parent().remove_child(self)
