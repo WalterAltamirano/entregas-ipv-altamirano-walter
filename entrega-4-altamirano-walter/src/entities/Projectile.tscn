@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cgadr55reetnl"]
+
+[ext_resource type="Script" uid="uid://0yxqa7pr5dye" path="res://src/entities/Projectile.gd" id="1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gsgs"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"movement",
+"speed": 5.0
+}]
+
+[node name="Projectile" type="Node2D" unique_id=2050156314]
+script = ExtResource("1")
+
+[node name="LifetimeTimer" type="Timer" parent="." unique_id=1060237212]
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=301521669]
+collision_layer = 0
+
+[node name="ProjectileAnimation" type="AnimatedSprite2D" parent="." unique_id=1020254724]
+sprite_frames = SubResource("SpriteFrames_1gsgs")
+animation = &"movement"
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
