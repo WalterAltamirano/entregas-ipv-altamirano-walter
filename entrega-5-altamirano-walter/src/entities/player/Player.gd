@@ -14,7 +14,7 @@ signal healed(amount: int)
 ## Señal que indica cambio de estado en la salud del personaje
 signal hp_changed(current_hp: int, max_hp: int)
 ## Señal emitida al morir
-signal died()
+signal die();
 
 @onready var weapon: Node = $"%Weapon"
 @onready var body_animations: AnimationPlayer = $BodyAnimations
@@ -42,18 +42,6 @@ func _ready() -> void:
 func initialize(_projectile_container: Node = get_parent()) -> void:
 	self.projectile_container = _projectile_container
 	weapon.projectile_container = projectile_container
-
-
-# El único elemento que queda abstraer de esta función
-# es el manejo del salto. Esta parte del código no va a
-# seguir formando parte del código del player, y, en su lugar
-# lo migraremos al código del estado Jump correspondiente
-func _process_input() -> void:
-	# Jump Action
-	var jump: bool = Input.is_action_just_pressed(&"jump")
-	if jump && is_on_floor_raycasted():
-		velocity.y -= jump_speed
-
 
 # Dado que es un comportamiento común a varios states diferentes,
 # una solución para evitar código repetido es extraer el comportamiento

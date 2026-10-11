@@ -5,10 +5,12 @@ class_name EnemyTurret
 @onready var fire_timer: Timer = $FireTimer
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var body_anim: AnimatedSprite2D = $Body
-
+@export var idle_timer: Timer
+@export var wander_radius:Vector2 = Vector2(10.0,10.0);
 @export var projectile_scene: PackedScene
 @export var pathfinding: PathfindAstar
 
+var path: Array = []
 var target: Node2D
 var projectile_container: Node
 
@@ -27,7 +29,7 @@ func _ready() -> void:
 func initialize(turret_pos: Vector2, _projectile_container: Node) -> void:
 	global_position = turret_pos
 	self.projectile_container = _projectile_container
-
+	idle_timer.start();
 
 func fire() -> void:
 	if target != null:
@@ -51,10 +53,13 @@ func _physics_process(_delta: float) -> void:
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
 	
-	## Damos vuelta el cuerpo para que mire al objetivo en el eje x
-	## y usamos la dirección a la que se casteó el raycast
-	## Otra manera sería hacer (target.global_position - global_position).x < 0
-	body_anim.flip_h = raycast.target_position.x < 0
+	if !path.is_empty():
+		pass
+	else:
+		## Damos vuelta el cuerpo para que mire al objetivo en el eje x
+		## y usamos la dirección a la que se casteó el raycast
+		## Otra manera sería hacer (target.global_position - global_position).x < 0
+		body_anim.flip_h = raycast.target_position.x < 0
 	move_and_slide()
 
 
@@ -65,7 +70,6 @@ func notify_hit() -> void:
 	print("I'm turret and imma die")
 	dead = true
 	target = null
-	set_physics_process(false)
 	fire_timer.stop()
 	collision_layer = 0
 	if target != null:
@@ -82,7 +86,6 @@ func _remove() -> void:
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if target == null && !dead:
 		target = body
-		set_physics_process(true)
 		
 		## No se ejecuta directamente el "idle_alert", sino que se ejecuta una
 		## animación de transición
@@ -92,7 +95,6 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	if body == target && !dead:
 		target = null
-		set_physics_process(false)
 		fire_timer.stop()
 		
 		## No se ejecuta directamente el "idle", sino que se ejecuta una
@@ -119,3 +121,13 @@ func _on_animation_finished() -> void:
 func _play_animation(animation: StringName) -> void:
 	if body_anim.sprite_frames.has_animation(animation):
 		body_anim.play(animation)
+
+
+func _on_idle_timer_timeout() -> void:
+	if pathfinding != null:
+		var random_targert:Vector2 = global_position + Vector2(
+			randf_range(-wander_radius.x, wander_radius.x),
+			randf_range(-wander_radius.y,wander_radius.y)
+		);
+		path = pathfinding.get_simple_path(global_position,random_targert);
+		 

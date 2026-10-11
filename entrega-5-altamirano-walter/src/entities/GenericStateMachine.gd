@@ -108,7 +108,6 @@ func _on_animation_finished(anim_name: StringName = &"") -> void:
 func _change_state(state_name: StringName) -> void:
 	if !active:
 		return
-	
 	# Sale del estado actual activo
 	if current_state != null:
 		current_state.exit()

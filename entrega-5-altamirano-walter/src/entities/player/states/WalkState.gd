@@ -31,7 +31,7 @@ func update(delta: float) -> void:
 		finished.emit(&"idle")
 	else:
 		# O aplicamos la animación que corresponde
-		if character.is_on_floor():
+		if character.is_on_floor_raycasted():
 			character._play_animation(&"walk")
 		else:
 			if character.velocity.y > 0:
@@ -39,10 +39,8 @@ func update(delta: float) -> void:
 			else:
 				character._play_animation(&"jump")
 
-
 func _on_animation_finished(anim_name: StringName) -> void:
 	return
-
 
 # En este callback manejamos, por el momento, solo los impactos
 func handle_event(event: StringName, value = null) -> void:
@@ -50,4 +48,4 @@ func handle_event(event: StringName, value = null) -> void:
 		&"hit":
 			character._handle_hit(value)
 			if character.dead:
-				finished.emit(&"dead")
+				finished.emit(&"die")

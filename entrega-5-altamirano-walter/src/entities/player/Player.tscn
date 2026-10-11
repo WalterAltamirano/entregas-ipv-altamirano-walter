@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dmes2iqfx7fof" path="res://src/entities/player/Cannon.gd" id="4"]
 [ext_resource type="Script" uid="uid://c4vn5dya7k4fg" path="res://src/entities/player/states/WalkState.gd" id="4_4cd8d"]
 [ext_resource type="PackedScene" uid="uid://b2frruyyyiljc" path="res://src/entities/player/PlayerProjectile.tscn" id="5"]
+[ext_resource type="Script" uid="uid://eas4l6phlv3r" path="res://src/entities/player/states/JumpState.gd" id="5_4cd8d"]
 [ext_resource type="Script" uid="uid://bbu1nfd6mpe2y" path="res://src/entities/player/states/DeadState.gd" id="5_tse5b"]
 [ext_resource type="Texture2D" uid="uid://d2n3umb3swssx" path="res://assets/textures/fx/hits/hits-4/hits-4-6.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://cgtr2eg4ubnea" path="res://assets/textures/fx/hits/hits-4/hits-4-7.png" id="7"]
@@ -15,10 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://gdqfpfo3viai" path="res://assets/textures/fx/hits/hits-4/hits-4-3.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://ia7mdrxdombu" path="res://assets/textures/fx/hits/hits-4/hits-4-1.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://bcp0mo1jdd4an" path="res://assets/textures/fx/hits/hits-4/hits-4-2.png" id="11"]
-
-[sub_resource type="CapsuleShape2D" id="1"]
-radius = 4.0
-height = 16.0
 
 [sub_resource type="Animation" id="3"]
 length = 0.001
@@ -300,6 +297,10 @@ _data = {
 &"fire": SubResource("10")
 }
 
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 4.0
+height = 16.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1930183438]
 texture_filter = 1
 collision_layer = 2
@@ -310,15 +311,11 @@ platform_floor_layers = 4294901761
 script = ExtResource("1")
 push_force = 160.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1257811364]
-position = Vector2(0, -8)
-shape = SubResource("1")
-
 [node name="StateMachine" type="Node" parent="." unique_id=168991136 node_paths=PackedStringArray("character", "start_state", "states_list")]
 script = ExtResource("2_brwq7")
 character = NodePath("..")
 start_state = NodePath("Idle")
-states_list = [NodePath("Idle"), NodePath("Walk"), NodePath("Dead")]
+states_list = [NodePath("Idle"), NodePath("Walk"), NodePath("Dead"), NodePath("Jump")]
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=1392337792]
 script = ExtResource("3_dky6r")
@@ -328,28 +325,32 @@ state_id = "idle"
 script = ExtResource("4_4cd8d")
 state_id = "walk"
 
+[node name="Jump" type="Node" parent="StateMachine" unique_id=1802994778]
+script = ExtResource("5_4cd8d")
+state_id = "jump"
+
 [node name="Dead" type="Node" parent="StateMachine" unique_id=2123614688]
 script = ExtResource("5_tse5b")
-state_id = "dead"
+state_id = "die"
 
 [node name="BodyAnimations" type="AnimationPlayer" parent="." unique_id=2126100985]
 libraries/ = SubResource("AnimationLibrary_wjetm")
 
 [node name="FloorRaycasts" type="Node2D" parent="." unique_id=294623669]
 
-[node name="RayCast2D1" type="RayCast2D" parent="FloorRaycasts" unique_id=2093224676]
+[node name="RayCast2D" type="RayCast2D" parent="FloorRaycasts" unique_id=2093224676]
 enabled = false
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 1)
 
 [node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts" unique_id=1919544876]
 position = Vector2(-3, 0)
 enabled = false
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 1)
 
 [node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts" unique_id=2055650601]
 position = Vector2(3, 0)
 enabled = false
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 1)
 
 [node name="BodyPivot" type="Node2D" parent="." unique_id=1114049371]
 
@@ -389,3 +390,7 @@ libraries/ = SubResource("AnimationLibrary_brwq7")
 [node name="FX" type="Sprite2D" parent="WeaponContainer/Weapon" unique_id=2138154864]
 position = Vector2(5, 0)
 scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1257811364]
+position = Vector2(0, -8)
+shape = SubResource("1")
