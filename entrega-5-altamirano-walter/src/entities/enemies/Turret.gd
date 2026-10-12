@@ -79,7 +79,13 @@ func _physics_process(_delta: float) -> void:
 		body_anim.flip_h = raycast.target_position.x < 0
 	move_and_slide()
 
-
+func _can_see_target() -> bool:
+	if target == null:
+		return false;
+	raycast.set_target_position(raycast.to_local(target.global_position))
+	raycast.force_raycast_update();
+	return raycast.is_colliding() && raycast.get_collider() == target;
+		
 ## Esta función ya no llama directamente a remove, sino que inhabilita las
 ## colisiones con el mundo, pausa todo lo demás y ejecuta una animación de muerte
 ## dependiendo de si el enemigo esta o no alerta

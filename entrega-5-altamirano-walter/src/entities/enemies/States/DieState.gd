@@ -1,4 +1,4 @@
-extends AbstractState
+extends TurretState
 
 func enter() -> void:
 	pass
