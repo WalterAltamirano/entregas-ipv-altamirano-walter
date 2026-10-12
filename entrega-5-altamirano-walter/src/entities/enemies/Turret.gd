@@ -9,7 +9,9 @@ class_name EnemyTurret
 @export var wander_radius:Vector2 = Vector2(10.0,10.0);
 @export var projectile_scene: PackedScene
 @export var pathfinding: PathfindAstar
-
+@export var speed:float = 10.0;
+@export var max_speed:float = 100.0;
+@export var pathfinding_step_threshold:float = 5.0;
 var path: Array = []
 var target: Node2D
 var projectile_container: Node
@@ -46,15 +48,30 @@ func fire() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	raycast.set_target_position(raycast.to_local(target.global_position))
-	if raycast.is_colliding() && raycast.get_collider() == target:
-		if fire_timer.is_stopped():
-			fire_timer.start()
-	elif !fire_timer.is_stopped():
-		fire_timer.stop()
-	
+	if target != null:
+		raycast.set_target_position(raycast.to_local(target.global_position))
+		if raycast.is_colliding() && raycast.get_collider() == target:
+			path = []
+			velocity = Vector2.ZERO;
+			if fire_timer.is_stopped():
+				fire_timer.start()
+		elif !fire_timer.is_stopped():
+			fire_timer.stop()
+			
 	if !path.is_empty():
-		pass
+		var next_point: Vector2 = path.front();
+		
+		while(global_position.distance_to(next_point) < pathfinding_step_threshold):
+			path.pop_front();
+			if path.is_empty():
+				idle_timer.start();
+				break
+			next_point = path.front();
+		velocity = (
+			velocity + 
+			global_position.direction_to(next_point) * speed
+		).clampf(speed,max_speed);
+		body_anim.flip_h = velocity.x > 0;
 	else:
 		## Damos vuelta el cuerpo para que mire al objetivo en el eje x
 		## y usamos la dirección a la que se casteó el raycast

@@ -2,9 +2,14 @@
 
 [ext_resource type="Script" uid="uid://bkj5hhu2oxiwc" path="res://src/entities/enemies/Turret.gd" id="2"]
 [ext_resource type="PackedScene" path="res://src/entities/enemies/TurretProjectile.tscn" id="3"]
+[ext_resource type="Script" uid="uid://d33oxtwqs353s" path="res://src/entities/enemies/TurretStateMachine.gd" id="3_aag6v"]
 [ext_resource type="SpriteFrames" uid="uid://bjfctxf8wdo5i" path="res://src/entities/enemies/TurretAnimations.tres" id="3_chgy7"]
 [ext_resource type="Script" uid="uid://c608dvbkjj7fs" path="res://src/entities/enemies/DetectionArea.gd" id="4"]
+[ext_resource type="Script" uid="uid://c2mqi6y30osde" path="res://src/entities/enemies/States/IdleState.gd" id="4_6wtxx"]
 [ext_resource type="Texture2D" uid="uid://b1m4ub6md6had" path="res://assets/textures/green_circle.png" id="5"]
+[ext_resource type="Script" uid="uid://dvhwo71vdycu0" path="res://src/entities/enemies/States/WalkState.gd" id="5_tcn5k"]
+[ext_resource type="Script" uid="uid://sxvb7xju12pi" path="res://src/entities/enemies/States/AlertState.gd" id="6_jnkdk"]
+[ext_resource type="Script" uid="uid://d35yypp7i7y4f" path="res://src/entities/enemies/States/DieState.gd" id="7_njpiu"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(19, 25)
@@ -19,6 +24,21 @@ collision_mask = 5
 script = ExtResource("2")
 idle_timer = NodePath("IdleTimer")
 projectile_scene = ExtResource("3")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1289772598]
+script = ExtResource("3_aag6v")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=828724099]
+script = ExtResource("4_6wtxx")
+
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1637056598]
+script = ExtResource("5_tcn5k")
+
+[node name="Alert" type="Node" parent="StateMachine" unique_id=2083010583]
+script = ExtResource("6_jnkdk")
+
+[node name="Die" type="Node" parent="StateMachine" unique_id=104712969]
+script = ExtResource("7_njpiu")
 
 [node name="FireTimer" type="Timer" parent="." unique_id=1927175766]
 wait_time = 2.0
