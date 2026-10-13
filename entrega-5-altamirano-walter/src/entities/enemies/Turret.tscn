@@ -36,10 +36,12 @@ idle_timer = NodePath("IdleTimer")
 state_id = "idle"
 
 [node name="IdleTimer" type="Timer" parent="StateMachine/Idle" unique_id=1246420801]
+one_shot = true
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1637056598]
 script = ExtResource("5_tcn5k")
-wander_radius = Vector2(50, 50)
+wander_radius = Vector2(100, 100)
+max_speed = 60.0
 state_id = "walk"
 
 [node name="Alert" type="Node" parent="StateMachine" unique_id=2083010583]
