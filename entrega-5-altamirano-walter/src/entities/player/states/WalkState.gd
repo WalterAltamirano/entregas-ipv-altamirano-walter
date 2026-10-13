@@ -12,7 +12,7 @@ func exit() -> void:
 
 func handle_input(event: InputEvent) -> void:
 	# Aquí se podría manejar, por ejemplo, transiciones a estados como Jump
-	pass
+	return
 
 
 # En esta función vamos a manejar las acciones apropiadas para este estado

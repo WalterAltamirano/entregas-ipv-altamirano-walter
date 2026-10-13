@@ -5,7 +5,7 @@ extends PlayerState
 # en el enter
 func enter() -> void:
 	character.die.emit()
-	character._play_animation(&"die")
+	character._play_animation("die")
 
 func exit() -> void:
 	return

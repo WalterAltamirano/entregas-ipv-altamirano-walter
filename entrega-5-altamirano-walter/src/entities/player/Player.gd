@@ -133,7 +133,6 @@ func _handle_hit(_amount: int = 1) -> void:
 	dead = true
 	hp_changed.emit(0, 1)
 
-
 # El llamado a remove final
 func _remove() -> void:
 	set_physics_process(false)

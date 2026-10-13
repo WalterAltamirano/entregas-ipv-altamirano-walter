@@ -17,16 +17,18 @@ size = Vector2(19, 25)
 [sub_resource type="CircleShape2D" id="2"]
 radius = 192.0
 
-[node name="Turret" type="CharacterBody2D" unique_id=776699133 node_paths=PackedStringArray("idle_timer")]
+[node name="Turret" type="CharacterBody2D" unique_id=776699133]
 texture_filter = 1
 collision_layer = 4
-collision_mask = 5
 script = ExtResource("2")
-idle_timer = NodePath("StateMachine/Idle/IdleTimer")
 projectile_scene = ExtResource("3")
 
-[node name="StateMachine" type="Node" parent="." unique_id=1289772598]
+[node name="StateMachine" type="Node" parent="." unique_id=1289772598 node_paths=PackedStringArray("turret", "dead_state", "start_state", "states_list")]
 script = ExtResource("3_aag6v")
+turret = NodePath("..")
+dead_state = NodePath("Die")
+start_state = NodePath("Idle")
+states_list = [NodePath("Walk"), NodePath("Die"), NodePath("Alert"), NodePath("Idle")]
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=828724099 node_paths=PackedStringArray("idle_timer")]
 script = ExtResource("4_6wtxx")
@@ -37,19 +39,20 @@ state_id = "idle"
 
 [node name="Walk" type="Node" parent="StateMachine" unique_id=1637056598]
 script = ExtResource("5_tcn5k")
+wander_radius = Vector2(50, 50)
 state_id = "walk"
 
 [node name="Alert" type="Node" parent="StateMachine" unique_id=2083010583]
 script = ExtResource("6_jnkdk")
 state_id = "alert"
 
+[node name="FireTimer" type="Timer" parent="StateMachine/Alert" unique_id=1927175766]
+wait_time = 2.0
+one_shot = true
+
 [node name="Die" type="Node" parent="StateMachine" unique_id=104712969]
 script = ExtResource("7_njpiu")
 state_id = "die"
-
-[node name="FireTimer" type="Timer" parent="." unique_id=1927175766]
-wait_time = 2.0
-one_shot = true
 
 [node name="FirePosition" type="Marker2D" parent="." unique_id=75118416]
 position = Vector2(0, -18.0339)
@@ -84,7 +87,8 @@ texture = ExtResource("5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1553412169]
 shape = SubResource("2")
 
+[connection signal="hit" from="." to="StateMachine" method="notify_hit"]
 [connection signal="timeout" from="StateMachine/Idle/IdleTimer" to="StateMachine/Idle" method="_on_idle_timer_timeout"]
-[connection signal="animation_finished" from="Body" to="." method="_on_animation_finished"]
+[connection signal="animation_finished" from="Body" to="StateMachine" method="_on_body_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="StateMachine" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="StateMachine" method="_on_detection_area_body_exited"]

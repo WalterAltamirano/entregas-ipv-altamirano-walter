@@ -394,3 +394,7 @@ scale = Vector2(0.5, 0.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1257811364]
 position = Vector2(0, -8)
 shape = SubResource("1")
+
+[connection signal="healed" from="." to="StateMachine" method="notify_healed"]
+[connection signal="hit" from="." to="StateMachine" method="notify_hit"]
+[connection signal="finished" from="StateMachine/Idle" to="StateMachine" method="_on_idle_finished"]
