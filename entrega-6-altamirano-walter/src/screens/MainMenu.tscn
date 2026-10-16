@@ -120,6 +120,8 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.2901961, 0.2901961, 0.2901961, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aawla"]
+
 [node name="MainMenu" type="Node" unique_id=289731146]
 script = ExtResource("1")
 level_manager_scene = ExtResource("4")
@@ -244,6 +246,40 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_tkluq")
 theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_tkluq")
 theme_override_styles/focus = SubResource("StyleBoxFlat_a078r")
 text = "Exit"
+
+[node name="OptionsMenu" type="Control" parent="CanvasLayer" unique_id=2124155369]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/OptionsMenu" unique_id=1251653533]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.2509804)
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenu" unique_id=386172666]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 125
+theme_override_constants/margin_top = 125
+theme_override_constants/margin_right = 125
+theme_override_constants/margin_bottom = 125
+
+[node name="Panel" type="Panel" parent="CanvasLayer/OptionsMenu/MarginContainer" unique_id=1620235356]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_aawla")
 
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
