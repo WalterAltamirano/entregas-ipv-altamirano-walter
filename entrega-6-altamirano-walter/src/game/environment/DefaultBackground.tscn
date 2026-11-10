@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqyr8idg6ryul"]
+[gd_scene format=3 uid="uid://bqyr8idg6ryul"]
 
 [ext_resource type="Texture2D" uid="uid://ctbw2hewfmv5n" path="res://assets/textures/tileset/ruins/Dungeon Ruins Tileset Day.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://d0q5usfd4wh38" path="res://assets/textures/background/Space Background.png" id="2"]
@@ -92,92 +92,92 @@ region = Rect2(288, 173, 127, 35)
 atlas = ExtResource("1")
 region = Rect2(320, 144, 192, 16)
 
-[node name="DefaultBackground" type="ParallaxBackground"]
+[node name="DefaultBackground" type="ParallaxBackground" unique_id=37595574]
 scroll_ignore_camera_zoom = true
 
-[node name="BackgroundAnim" type="AnimationPlayer" parent="."]
+[node name="BackgroundAnim" type="AnimationPlayer" parent="." unique_id=1253940175]
 root_node = NodePath("../StarsLayer")
-libraries = {
-&"": SubResource("AnimationLibrary_g8mj7")
-}
-autoplay = "loop"
+libraries/ = SubResource("AnimationLibrary_g8mj7")
+autoplay = &"loop"
 
-[node name="SkyColor" type="ColorRect" parent="."]
+[node name="SkyColor" type="ColorRect" parent="." unique_id=346110815]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.862745, 1, 0.956863, 1)
 
-[node name="StarsLayer" type="ParallaxLayer" parent="."]
+[node name="StarsLayer" type="ParallaxLayer" parent="." unique_id=1904477665]
 texture_filter = 1
 motion_scale = Vector2(0.005, 0)
 motion_mirroring = Vector2(288, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="StarsLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="StarsLayer" unique_id=1782240838]
 modulate = Color(1, 1, 1, 0.027451)
 material = SubResource("7")
 position = Vector2(144, 82)
 texture = ExtResource("2")
 
-[node name="MoonLayer" type="ParallaxLayer" parent="."]
+[node name="MoonLayer" type="ParallaxLayer" parent="." unique_id=1992866394]
 texture_filter = 1
 motion_scale = Vector2(0.005, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="MoonLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="MoonLayer" unique_id=689920183]
 position = Vector2(102, 33)
 texture = SubResource("1")
 
-[node name="CloudsLayer1" type="ParallaxLayer" parent="."]
+[node name="CloudsLayer1" type="ParallaxLayer" parent="." unique_id=1307628899]
 texture_filter = 1
 motion_scale = Vector2(0.01, 0)
 motion_mirroring = Vector2(576, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="CloudsLayer1"]
+[node name="Sprite2D" type="Sprite2D" parent="CloudsLayer1" unique_id=1717783113]
 position = Vector2(473, 27)
 texture = SubResource("4")
 
-[node name="Sprite2" type="Sprite2D" parent="CloudsLayer1"]
+[node name="Sprite2" type="Sprite2D" parent="CloudsLayer1" unique_id=183431279]
 position = Vector2(69, 49)
 texture = SubResource("5")
 
-[node name="Sprite3" type="Sprite2D" parent="CloudsLayer1"]
+[node name="Sprite3" type="Sprite2D" parent="CloudsLayer1" unique_id=1951084984]
 position = Vector2(276, 22)
 texture = SubResource("6")
 
-[node name="MountainsLayer" type="ParallaxLayer" parent="."]
+[node name="MountainsLayer" type="ParallaxLayer" parent="." unique_id=590023200]
 texture_filter = 1
 motion_scale = Vector2(0.05, 0)
 motion_mirroring = Vector2(288, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="MountainsLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="MountainsLayer" unique_id=2049789178]
 position = Vector2(63, 105)
 texture = SubResource("3")
 
-[node name="Sprite2" type="Sprite2D" parent="MountainsLayer"]
+[node name="Sprite2" type="Sprite2D" parent="MountainsLayer" unique_id=119382555]
 position = Vector2(147, 106)
 scale = Vector2(-1, 1)
 texture = SubResource("3")
 
-[node name="Sprite3" type="Sprite2D" parent="MountainsLayer"]
+[node name="Sprite3" type="Sprite2D" parent="MountainsLayer" unique_id=1137389003]
 position = Vector2(245, 108)
 scale = Vector2(-1, 1)
 texture = SubResource("3")
 
-[node name="DunesLayer" type="ParallaxLayer" parent="."]
+[node name="DunesLayer" type="ParallaxLayer" parent="." unique_id=675380500]
 texture_filter = 1
 motion_scale = Vector2(0.1, 0)
 motion_mirroring = Vector2(288, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="DunesLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="DunesLayer" unique_id=1495084378]
 position = Vector2(96, 118)
 texture = SubResource("2")
 
-[node name="Sprite2" type="Sprite2D" parent="DunesLayer"]
+[node name="Sprite2" type="Sprite2D" parent="DunesLayer" unique_id=1069902444]
 position = Vector2(195, 118)
 scale = Vector2(-1, 1)
 texture = SubResource("2")
 
-[node name="ColorRect" type="ColorRect" parent="DunesLayer"]
+[node name="ColorRect" type="ColorRect" parent="DunesLayer" unique_id=762717095]
 anchors_preset = -1
 anchor_bottom = 0.817
 offset_top = 121.0

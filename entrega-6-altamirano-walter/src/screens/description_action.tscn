@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://13410ad6k0jk"]
+
+[ext_resource type="Script" uid="uid://ug7b3iuipqgn" path="res://src/screens/description_action.gd" id="1_df2mx"]
+[ext_resource type="Texture2D" uid="uid://dnjr324ag3v6h" path="res://assets/textures/ui/Controller&KeyPrompts/Keyboard & Mouse/Dark/A_Key_Dark.png" id="1_hp27n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pxlw4"]
+line_spacing = 16.0
+
+[node name="Action" type="PanelContainer" unique_id=777008163]
+custom_minimum_size = Vector2(0, 35)
+custom_maximum_size = Vector2(200, -1)
+script = ExtResource("1_df2mx")
+
+[node name="ContainerInfo" type="HBoxContainer" parent="." unique_id=158870809]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Panel" type="PanelContainer" parent="ContainerInfo" unique_id=4700153]
+layout_mode = 2
+
+[node name="Input" type="TextureRect" parent="ContainerInfo/Panel" unique_id=2054867751]
+layout_mode = 2
+texture = ExtResource("1_hp27n")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Action" type="Label" parent="ContainerInfo" unique_id=870182123]
+layout_mode = 2
+text = "Move Left"
+label_settings = SubResource("LabelSettings_pxlw4")
