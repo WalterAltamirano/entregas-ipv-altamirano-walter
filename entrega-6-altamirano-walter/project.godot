@@ -21,9 +21,8 @@ GameState="*uid://x3lt4vnpwt7g"
 
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
-window/stretch/scale=2.1
+window/stretch/mode="viewport"
+window/stretch/scale=2.5
 window/vsync/vsync_mode=2
 
 [input]

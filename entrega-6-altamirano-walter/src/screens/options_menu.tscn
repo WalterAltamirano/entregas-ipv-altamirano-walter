@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://w4dp518tokpg"]
 
 [ext_resource type="PackedScene" uid="uid://13410ad6k0jk" path="res://src/screens/description_action.tscn" id="1_8qr2u"]
+[ext_resource type="Script" uid="uid://5ru4wdkxbuir" path="res://src/screens/options_menu.gd" id="1_eq0u4"]
 [ext_resource type="FontFile" path="res://assets/fonts/Default-Medium.tres" id="2_eq0u4"]
 [ext_resource type="FontFile" uid="uid://bqt658n8k8iip" path="res://assets/fonts/DungeonFont.ttf" id="3_h7o6t"]
 
@@ -37,24 +38,29 @@ corner_radius_bottom_left = 8
 
 [node name="OptionsMenu" type="Control" unique_id=138900822]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
 offset_right = -576.0
-offset_bottom = -323.0
+offset_bottom = -324.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_eq0u4")
 
 [node name="Panel" type="Panel" parent="." unique_id=2027348986]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 126.0
-offset_top = 55.0
-offset_right = -131.0
-offset_bottom = -55.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 285.0
+offset_bottom = 205.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t4mfc")
@@ -62,14 +68,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_t4mfc")
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel" unique_id=186194542]
 custom_minimum_size = Vector2(208, 117)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 14
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -112.5
+offset_left = 91.0
 offset_top = -58.5
-offset_right = 112.5
+offset_right = -83.0
 offset_bottom = 58.5
 grow_horizontal = 2
 grow_vertical = 2
@@ -84,8 +89,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 6
 
-[node name="PanelContainer" parent="Panel/ScrollContainer/VBoxContainer" unique_id=777008163 instance=ExtResource("1_8qr2u")]
+[node name="Action" parent="Panel/ScrollContainer/VBoxContainer" unique_id=777008163 instance=ExtResource("1_8qr2u")]
 layout_mode = 2
+
+[node name="Action2" parent="Panel/ScrollContainer/VBoxContainer" unique_id=299091535 instance=ExtResource("1_8qr2u")]
+layout_mode = 2
+action_input = "D"
+action_name = "Move Right"
+
+[node name="Action3" parent="Panel/ScrollContainer/VBoxContainer" unique_id=1384624077 instance=ExtResource("1_8qr2u")]
+layout_mode = 2
+size_flags_horizontal = 4
+action_input = "W"
+action_name = "Move Up"
 
 [node name="Title" type="Label" parent="Panel" unique_id=1164244049]
 layout_mode = 1
@@ -106,7 +122,7 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Button" type="Button" parent="Panel" unique_id=66636490]
+[node name="Return" type="Button" parent="Panel" unique_id=66636490]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -123,3 +139,5 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_h7o6t")
 theme_override_styles/normal = SubResource("StyleBoxFlat_cd3pl")
 text = "Return"
+
+[connection signal="pressed" from="Panel/Return" to="." method="hide"]

@@ -1,15 +1,28 @@
 [gd_scene format=3 uid="uid://13410ad6k0jk"]
 
 [ext_resource type="Script" uid="uid://ug7b3iuipqgn" path="res://src/screens/description_action.gd" id="1_df2mx"]
-[ext_resource type="Texture2D" uid="uid://dnjr324ag3v6h" path="res://assets/textures/ui/Controller&KeyPrompts/Keyboard & Mouse/Dark/A_Key_Dark.png" id="1_hp27n"]
+[ext_resource type="FontFile" uid="uid://i1qus13x2d0u" path="res://assets/fonts/Roboto-Bold.ttf" id="2_df2mx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8qr2u"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0, 0, 0, 0.12156863)
+
+[sub_resource type="LabelSettings" id="LabelSettings_hp27n"]
+font = ExtResource("2_df2mx")
+font_size = 20
 
 [sub_resource type="LabelSettings" id="LabelSettings_pxlw4"]
 line_spacing = 16.0
 
 [node name="Action" type="PanelContainer" unique_id=777008163]
-custom_minimum_size = Vector2(0, 35)
+custom_minimum_size = Vector2(200, 35)
 custom_maximum_size = Vector2(200, -1)
+offset_right = 200.0
+offset_bottom = 35.0
 script = ExtResource("1_df2mx")
+action_input = "A"
+action_name = "Move Left"
 
 [node name="ContainerInfo" type="HBoxContainer" parent="." unique_id=158870809]
 layout_mode = 2
@@ -17,12 +30,12 @@ theme_override_constants/separation = 15
 
 [node name="Panel" type="PanelContainer" parent="ContainerInfo" unique_id=4700153]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8qr2u")
 
-[node name="Input" type="TextureRect" parent="ContainerInfo/Panel" unique_id=2054867751]
+[node name="Input" type="Label" parent="ContainerInfo/Panel" unique_id=990852247]
 layout_mode = 2
-texture = ExtResource("1_hp27n")
-expand_mode = 3
-stretch_mode = 4
+text = "A"
+label_settings = SubResource("LabelSettings_hp27n")
 
 [node name="Action" type="Label" parent="ContainerInfo" unique_id=870182123]
 layout_mode = 2
