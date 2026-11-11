@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://xy65fxd50q6v"]
+
+[ext_resource type="Script" uid="uid://1cjmgssymms6" path="res://src/game/ui/GUIManager.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://tsc8enkwhq1k" path="res://assets/textures/ui/GUISprite.png" id="2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_85cfu"]
+load_path = "res://.godot/imported/GUISprite.png-3b8e8441cb60b754648f6852e1b99f26.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58gqf"]
+atlas = SubResource("CompressedTexture2D_85cfu")
+region = Rect2(18, 50.87879, 59, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2nq6t"]
+load_path = "res://.godot/imported/GUISprite.png-3b8e8441cb60b754648f6852e1b99f26.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiw6m"]
+atlas = SubResource("CompressedTexture2D_2nq6t")
+region = Rect2(18, 67, 59, 9)
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("2")
+region = Rect2(16, 50.87879, 64, 9)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_byo0w"]
+load_path = "res://.godot/imported/GUISprite.png-3b8e8441cb60b754648f6852e1b99f26.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85cfu"]
+atlas = SubResource("CompressedTexture2D_byo0w")
+region = Rect2(16, 36.696968, 64, 7.303032)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_58gqf"]
+load_path = "res://.godot/imported/GUISprite.png-3b8e8441cb60b754648f6852e1b99f26.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2nq6t"]
+atlas = SubResource("CompressedTexture2D_58gqf")
+region = Rect2(16, 36, 63, 9)
+
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("2")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="5"]
+atlas = ExtResource("2")
+region = Rect2(16, 16, 16, 16)
+
+[node name="GUI" type="Control" unique_id=417526310]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1")
+fade_duration = 2.0
+fade_delay = 1.0
+
+[node name="StatsContainer" type="Control" parent="." unique_id=454041468]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="HpProgress1" type="TextureProgressBar" parent="StatsContainer" unique_id=599013501]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 17.0
+offset_top = 1.0
+offset_right = 76.0
+offset_bottom = 10.0
+max_value = 10.0
+value = 5.0
+texture_under = SubResource("AtlasTexture_58gqf")
+texture_progress = SubResource("AtlasTexture_jiw6m")
+
+[node name="ManaProgress" type="TextureProgressBar" parent="StatsContainer" unique_id=1971098238]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 80.0
+offset_bottom = 23.0
+max_value = 10.0
+value = 5.0
+texture_over = SubResource("2")
+texture_progress = SubResource("AtlasTexture_85cfu")
+tint_progress = Color(0, 1.9447842, 6.840123, 1)
+
+[node name="StaminaProgress" type="TextureProgressBar" parent="StatsContainer" unique_id=36061318]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 24.0
+offset_right = 79.0
+offset_bottom = 33.0
+max_value = 10.0
+value = 5.0
+texture_over = SubResource("2")
+texture_progress = SubResource("AtlasTexture_2nq6t")
+tint_progress = Color(6.9914454e-06, 2.9655542, 1.465924, 1)
+
+[node name="HpProgress2" type="TextureProgressBar" parent="StatsContainer" unique_id=362198891]
+unique_name_in_owner = true
+layout_mode = 0
+max_value = 10.0
+value = 5.0
+fill_mode = 3
+texture_under = SubResource("4")
+texture_progress = SubResource("5")

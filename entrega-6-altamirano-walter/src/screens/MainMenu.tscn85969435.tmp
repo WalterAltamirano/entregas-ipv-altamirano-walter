@@ -1,0 +1,147 @@
+[gd_scene load_steps=12 format=3 uid="uid://b1avikl8fshvv"]
+
+[ext_resource type="Script" uid="uid://dr10w05dwxk25" path="res://src/screens/MainMenu.gd" id="1"]
+[ext_resource type="PackedScene" path="res://src/screens/LevelManager.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://bqyr8idg6ryul" path="res://src/game/environment/DefaultBackground.tscn" id="5"]
+[ext_resource type="Script" uid="uid://co6h5wydaiixd" path="res://src/screens/components/MouseCamera.gd" id="6"]
+[ext_resource type="TileSet" uid="uid://dvewglkioxu04" path="res://src/game/levels/tilesets/tileset_desert1.tres" id="7"]
+[ext_resource type="Texture2D" uid="uid://dhtokuwmgphp" path="res://assets/textures/player/player_sheet.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://cnb73q0156ujd" path="res://assets/textures/mouse/pointer.png" id="10"]
+
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("8")
+region = Rect2(0, 0, 288, 160)
+
+[sub_resource type="Animation" id="6"]
+length = 0.001
+
+[sub_resource type="Animation" id="7"]
+resource_name = "idle"
+length = 0.9
+loop_mode = 1
+step = 0.15
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xif3j"]
+_data = {
+&"RESET": SubResource("6"),
+&"idle": SubResource("7")
+}
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1")
+level_manager_scene = ExtResource("4")
+mouse_cursor = ExtResource("10")
+
+[node name="DefaultBackground" parent="." instance=ExtResource("5")]
+
+[node name="Sprite2" parent="DefaultBackground/CloudsLayer1" index="1"]
+position = Vector2(69, -38)
+
+[node name="Sprite3" parent="DefaultBackground/CloudsLayer1" index="2"]
+position = Vector2(276, -65)
+
+[node name="MountainsLayer" parent="DefaultBackground" index="5"]
+motion_scale = Vector2(0.005, 0)
+
+[node name="Sprite2" parent="DefaultBackground/MountainsLayer" index="1"]
+position = Vector2(147, 22)
+
+[node name="Sprite3" parent="DefaultBackground/MountainsLayer" index="2"]
+position = Vector2(245, 24)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="CharacterLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.05, 0)
+
+[node name="BackTilemap" type="TileMap" parent="ParallaxBackground/CharacterLayer"]
+modulate = Color(0.67451, 0.67451, 0.67451, 1)
+tile_set = ExtResource("7")
+format = 2
+
+[node name="Ground" type="TileMap" parent="ParallaxBackground/CharacterLayer"]
+position = Vector2(0, -6)
+tile_set = ExtResource("7")
+format = 2
+
+[node name="Environment" type="TileMap" parent="ParallaxBackground/CharacterLayer"]
+tile_set = ExtResource("7")
+format = 2
+
+[node name="Body" type="Sprite2D" parent="ParallaxBackground/CharacterLayer"]
+unique_name_in_owner = true
+position = Vector2(12, 37)
+texture = SubResource("2")
+hframes = 9
+vframes = 5
+frame = 4
+
+[node name="BodyAnimations" type="AnimationPlayer" parent="ParallaxBackground/CharacterLayer/Body"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_xif3j")
+}
+autoplay = "idle"
+
+[node name="TitlePivot" type="Node2D" parent="ParallaxBackground/CharacterLayer"]
+position = Vector2(0, -71)
+
+[node name="MarginContainer" type="MarginContainer" parent="ParallaxBackground/CharacterLayer/TitlePivot"]
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="ParallaxBackground/CharacterLayer/TitlePivot/MarginContainer"]
+self_modulate = Color(0.823529, 0.823529, 0.823529, 1)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ParallaxBackground/CharacterLayer/TitlePivot/MarginContainer"]
+layout_mode = 2
+text = "REPLACE THIS NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseCamera" type="Camera2D" parent="."]
+position = Vector2(144, 81)
+zoom = Vector2(2, 2)
+script = ExtResource("6")
+movement_strength = 0.25
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Container" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/Container"]
+layout_mode = 0
+anchor_top = 0.5
+anchor_bottom = 0.5
+mouse_filter = 2
+alignment = 1
+
+[node name="StartButton" type="Button" parent="CanvasLayer/Container/Buttons"]
+layout_mode = 2
+text = "Start"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Container/Buttons"]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/Container/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
+
+[editable path="DefaultBackground"]
