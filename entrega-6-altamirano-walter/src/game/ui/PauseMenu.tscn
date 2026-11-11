@@ -192,6 +192,10 @@ text = "Back to Menu"
 [node name="OptionsMenu" parent="." unique_id=138900822 instance=ExtResource("4_rabgt")]
 visible = false
 layout_mode = 1
+offset_left = -130.0
+offset_top = -118.0
+offset_right = -130.0
+offset_bottom = -118.0
 
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Options" to="OptionsMenu" method="show"]
